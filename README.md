@@ -129,9 +129,9 @@ After that type this command to unzip the file and extract it to home
 unzip ngrok.zip -d ~
 ```
 
-Note: file name of ngrok may be differs so you neer to type the exact filename of that zip file in order to unzip it
+Note: file name of ngrok may be differs so you need to type the exact filename of that zip file in order to unzip it
 
-11. After you unzipped the file, lets got to home folder
+11. After you unzipped the file, lets go to home folder
 
 ```console
    cd ~ 
