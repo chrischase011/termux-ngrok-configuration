@@ -197,7 +197,7 @@ termux-chroot gives access to ngrok to start a tunneling service to expose our l
     ngrok http 8080
 ```
 
-And now it the Session Status becomes green and it says online. And you can now find 2 Forwarding with http and https. We will use the http one to browse it in your browser.
+And now the Session Status becomes green and it says online. And you can now find 2 Forwarding with http and https. We will use the http one to browse it in your browser.
 
 
  Now, lets open it to your browser.. just copy the domain in http and paste it on search bar
