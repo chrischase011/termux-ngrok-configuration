@@ -231,4 +231,4 @@ Everytime we open termux app to run ngrok
 That's all thank you.
 
 
-Prepared by (Christopher Robin Chase)[https://github.com/chrischase011]
+Prepared by [Christopher Robin Chase](https://github.com/chrischase011)
