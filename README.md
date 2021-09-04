@@ -163,7 +163,7 @@ Example:
  ./ngrok 3yfi69Hf9ekfpsh&dhjPsnfu&dhdoapBs7znao7adn
 ```
 
-And make you you will see a success or at least Auth Saved after you do it.
+And make sure you will see a success or at least Auth Saved after you do it.
 
 14. Now, let's try to connect our localhost to ngrok.. we all know that it uses port  8080 . To do so, type 
 
