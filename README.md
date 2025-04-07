@@ -1,93 +1,93 @@
 # termux-ngrok-configuration
-Procedures to configure ngrok on termux to run nginx webserver
+## Procedures to configure ngrok on termux to run nginx webserver
 
-Configure Nginx on Termux with ngrok
+__Steps to Configure Nginx on Termux with Ngrok__
 
 1. Download Termux at Playstore
 2. Open Termux app after download
 3. Update apt-get or pkg using this command  you can use apt-get or pkg in installing package
   
 ```console  
-    apt-get update
-    pkg upgrade
+apt-get update
+pkg upgrade
 ```
 
 4. Access shared and external storage using this command
 
 ```console
-  termux-setup-storage
+termux-setup-storage
 ```
 
- And navigate to home directory to check if we found the internal storage folder
+  Then navigate to the home directory to check if the internal storage folder is present.
+  
+  ```console
+  cd ~
+  ls
+  ```
 
-```console
-   cd ~
-   ls
-```
-
-If storage folder is in the list then it's good
+  If the `storage` folder is in the list, then you're good to go.
 
 5. Install nginx 
 
 ```console
-   pkg install nginx
+pkg install nginx
 ```
 
-6. After you install nginx, you can run localhost using your phone browser just type: localhost:8080
+6. After installing Nginx, you can access localhost using your phone's browser. Just type: `localhost:8080`.
 
 
-7. If the Welcome nginx appears, then the nginx installation succeed
+7. If the Nginx welcome page appears, then the installation was successful.
 
-Note: you can also stop the nginx in service by typing this command
+  __Note__: You can also stop the Nginx service by typing the following command
+
+  ```console
+  nginx -s stop
+  ```
+
+8. The default location for Nginx HTML files is `/usr/share/nginx/html`. You can use the following command to navigate to that directory:
 
 ```console
-    nginx -s stop
+cd ~
+cd ..
+cd /usr/share/nginx/html
 ```
 
-8. The default storage of nginx html files can be found on /usr/share/nginx/html directory. You can use this command to navigate on that directory
+To view the contents of the folder, type the following command:
 
 ```console
-   cd ~
-   cd ..
-   cd /usr/share/nginx/html
+ls
 ```
 
-to view what's inside the folder, type this command
+__Note__: This is where you deploy HTML files to run on the Nginx web server. You’ll find the default Nginx web page named `index.html` in this directory.
+
+8.1 If you want to configure the Nginx `.conf` file (for example, to change the port), you can navigate to `/etc/nginx` to locate the `nginx.conf file`. To do so, type the following command:
 
 ```console
-  ls
+cd ~
+cd ..
+cd /usr/etc/nginx
+ls
 ```
 
-Note: this is where we deploy html files to run on nginx web server. You can find the default web page of nginx named index.html in that directory.
-
-8.1 if you want to configure the .conf file of nginx , just in case you want to change the port, you can navigate to /usr/etc/nginx to locate the nginx.conf file. To do it type this command
+Then, you can find the nginx.conf file there. To view its contents, type the following command:
 
 ```console
-   cd ~
-   cd ..
-   cd /usr/etc/nginx
-   ls
+cat nginx.conf
 ```
 
-and you can find the nginx.conf there.. to view the contents of that file type
+If you want to edit the file, make sure to install the `nano` package.
 
 ```console
-   cat nginx.conf
+pkg install nano
 ```
 
-If you want to edit the file, make sure you install the nano package
+After installing nano, you can now edit the file using the following command:
 
 ```console
-   pkg install nano
+nano nginx.conf
 ```
 
-Then after you install nano, you can now edit the file using this command
-
-```console
-   nano nginx.conf
-```
-
-Note: locate the 
+__Note__: locate the 
 
 ```console
 server {
@@ -96,128 +96,134 @@ server {
    server_name    localhost;
 ```
 
-To edit the port from 8080 to your choice
+To edit the port from 8080 to your choice.
 
-Warning: Editing this file can damage the service of the web server. So be careful on  editing the conf file.
+__Warning__: Editing this file can disrupt the `web server service`, so be careful when modifying the `conf` file.
 
 
-9. To access the localhost on different device, we will use the ngrok.
+9. To access localhost on a different device, we will use `ngrok`.
 
-Ngrok is a cross-platform application that exposes local server ports to the Internet. 
+`Ngrok` is a cross-platform application that exposes local server ports to the internet.
 
-To do it, download the ngrok on : https://ngrok.com/download
+To get started, download `ngrok` from: https://ngrok.com/download.
 
-Note: Register on the ngrok website because we will use your own Auth Token to save it on termux and to have at least free plan
+__Note__: Register on the `ngrok` website, as we will use your own `Auth Token` to save it on Termux and enable at least the free plan.
 
-Note: make sure that the zip file of ngrok is in the Download folder of your internal storage so that we can easily access it on termux
+__Note__: Make sure that the `ngrok` zip file is in the `Download` folder of your internal storage so that it can be easily accessed from Termux.
   
 
-10. After installing the ngrok, navigate to download folder of your internal storage.
+10. After installing `ngrok`, navigate to the "Download" folder in your internal storage.
 
 ```console
-  cd ~
-  cd storage
-  ls   //to check if the download folder exists
+cd ~
+cd storage
+ls   // to check if the download folder exists
 
-  cd download
-  ls // to check the ngrok zip file
+cd download
+ls // to check the ngrok zip file
 ```
 
-After that type this command to unzip the file and extract it to home 
+After that, type the following command to unzip the file and extract it to the home directory:
 
 ```console
 unzip ngrok.zip -d ~
 ```
 
-Note: file name of ngrok may be differs so you need to type the exact filename of that zip file in order to unzip it
+__Note__: The file name of ngrok may differ, so you need to type the exact filename of the zip file in order to unzip it.
 
-11. After you unzipped the file, lets go to home folder
+11. After you unzipped the file, lets go to home folder.
 
 ```console
-   cd ~ 
-   ls
+cd ~ 
+ls
 ```
 
-12.If you see ngrok in the list then it's good..
-And, let's change it's permission to execute it.. type this command 
+12. If you see ngrok in the list, then it's good.
+Next, let's change its permissions to make it executable. Type the following command:
 
 ```console
-   chmod +x ngrok
-    ls
+chmod +x ngrok
+ls
 ```
 
-If ngrok is now in color green, then it is ready to fire it up.
+If ngrok is now displayed in green, it is ready to be launched.
 
 
-13. Now, it is time to login on ngrok website to copy your auth_token to termux.
+13. Now, it's time to log in to the ngrok website and copy your `auth_token` to Termux.
 
-In the dashboard, you will find the command on how to save your token in termux. To do it type:
+In the dashboard, you will find the command to save your `token` in Termux. To do this, type the following command:
 
 ```console
-  ./ngrok <auth_token>
+./ngrok <auth_token>
 ```
 
 Example: 
 
 ```console
- ./ngrok 3yfi69Hf9ekfpsh&dhjPsnfu&dhdoapBs7znao7adn
+./ngrok 3yfi69Hf9ekfpsh&dhjPsnfu&dhdoapBs7znao7adn
 ```
 
-And make sure you will see a success or at least Auth Saved after you do it.
+Make sure you see a success message or at least "Auth Saved" after doing this.
 
-14. Now, let's try to connect our localhost to ngrok.. we all know that it uses port  8080 . To do so, type 
+14. Now, let's try to connect our localhost to ngrok. We know that it uses port `8080`. To do so, type the following command:
 
 ```console
-   ./ngrok http 8080
+./ngrok http 8080
 ```
 
-Then the termux will change to ngrok connection service where you can see: 
+Then, `Termux` will switch to the ngrok connection service, where you can see:
 
-ngrok by @inconshreveable, Version Status, Region and etc.
+- ngrok by @inconshreveable
 
-Now, let's look on Session Status. It always  says Reconnecting and it loops on Reconnecting. That is because latest Ngrok may not work in Termux directly as requires /etc/resolv.conf . To do it lets install another package
+- Version
+
+- Status
+
+- Region, etc.
+
+Now, let's look at the Session Status. It will always say "Reconnecting" and loop indefinitely. This happens because the latest version of ngrok may not work directly in Termux as it requires `/etc/resolv.conf`. To resolve this, let's install another package.
 
 ```console
-    pkg install proot
-    pkg install proot resolve-conf
+pkg install proot
+pkg install proot resolve-conf
 ```
 
-Note: (important)And after we install proot, everytime we use ngrok, everytime we close the termux, always run this command to use ngrok properly
+
+__Note (Important)__: After installing proot, every time you use `ngrok`, you must run this command to use `ngrok` properly each time you close Termux.
 
 ```console
-  termux-chroot
+termux-chroot
 ```
 
-termux-chroot gives access to ngrok to start a tunneling service to expose our localhost in the internet
+`termux-chroot` gives ngrok access to start a tunneling service, allowing us to expose our localhost to the internet.
 
 
-15. After that, we are now ready to use ngrok anytime anywhere as long as you have internet. Type this command again 
+15. After that, you are now ready to use `ngrok` anytime, anywhere, as long as you have an internet connection. Type this command again:
 
 ```console
-    ngrok http 8080
+ngrok http 8080
 ```
 
-And now the Session Status becomes green and it says online. And you can now find 2 Forwarding with http and https. We will use the http one to browse it in your browser.
+Now, the Session Status will turn green and say "online." You will see two Forwarding links, one for HTTP and one for HTTPS. We will use the HTTP link to browse it in your browser.
 
-
- Now, lets open it to your browser.. just copy the domain in http and paste it on search bar
+Now, let's open it in your browser. Just copy the HTTP domain and paste it into the search bar.
 
 Example:
 
- http://4488-136-158-8-66.ngrok.io
+ `http://4488-136-158-8-66.ngrok.io`
 
-And you will see the Welcome to Nginx page.
+And you will see the `Welcome to Nginx page`.
 
-Remember:
+__Remember__:
 
- In order to deploy web files, always refer to the number 8 procedure
+To deploy web files, always refer to procedure number 8.
 
- The default storage of nginx html files can be found on /usr/share/nginx/html directory. You can use this command to navigate on that directory
+The default location for Nginx HTML files is `/usr/share/nginx/html`. You can use the following command to navigate to that directory:
 
 ```console
-   cd ~
-   cd ..
-   cd /usr/share/nginx/html
+cd ~
+cd ..
+cd /usr/share/nginx/html
 ```
 
 And always remember to type
@@ -225,7 +231,7 @@ And always remember to type
 ```console
    termux-chroot
 ```
-Everytime we open termux app to run ngrok
+Everytime we open termux app to run ngrok.
 
 
 That's all thank you.
